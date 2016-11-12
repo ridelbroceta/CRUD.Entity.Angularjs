@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<script src="~/Scripts/MyScripts/services.js"></script>
+<script src="~/Scripts/MyScripts/controllers.js"></script>
+
+
+
+<h2>Index</h2>
+
+<div ng-controller="controller1">
+
+    <h1> Persons Details Page</h1>
+
+    <br />
+
+    <button type="button" class="btn btn-primary" ng-click="addPerson()">Add Person</button>
+
+
+    <div>
+        <p>Persons List</p>
+        <table class="table table-bordered table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Name</b></td>
+                <td><b>Actions</b></td>
+            </tr>
+            <tr ng-repeat="person in persons">
+                <td>
+                    {{person.Id}}
+                </td>
+                <td>
+                    {{person.Name}}
+                </td>
+                <td>
+                    <button ng-click="editPerson(person)" class="btn btn-primary">Edit</button>
+                    <button ng-click="deletePerson(person)" class="btn btn-primary">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-show="divPerson">
+        <p>{{Action}} Person</p>
+        <table>
+            <tr>
+                <td><b>Id</b></td>
+                <td>
+                    <input type="text" disabled="disabled" ng-model="personId" />
+                </td>
+            </tr>
+            <tr>
+                <td><b>Name</b></td>
+                <td>
+                    <input type="text" ng-model="personName"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="button" class="btn btn-primary" ng-click="addUpdatePerson()">Save Changes</button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+
+</div>
+
