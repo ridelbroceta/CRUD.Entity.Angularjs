@@ -1,5 +1,15 @@
 ﻿app.controller('controller1', function($scope, servicePerson) {
     $scope.divPerson = false;
+    $scope.hidePersonId = true;
+    $scope.person = {
+        Id: 0,
+        Name: "",
+        LastName: "",
+        State: "",
+        Age: 0
+    };
+    $scope.Field = "Id";
+
     getAllPersons();
 
     function getAllPersons() {
@@ -22,26 +32,36 @@
     }
 
     $scope.editPerson = function (person) {
-        $scope.personId = person.Id;
-        $scope.personName = person.Name;
+        $scope.person.Id = person.Id;
+        $scope.person.Name = person.Name;
+        $scope.person.LastName = person.LastName;
+        $scope.person.State = person.State;
+        $scope.person.Age = person.Age;
         $scope.Action = "Update";
         $scope.divPerson = true;
+        $scope.hidePersonId = false;
+    }
 
-
+    $scope.SortBy = function (field) {
+        $scope.Field = field;
     }
 
     $scope.addUpdatePerson = function () {
 
         var person = {
-            Name: $scope.personName
+            Name: $scope.person.Name,
+            LastName: $scope.person.LastName,
+            State: $scope.person.State,
+            Age: $scope.person.Age
         };
         var action = $scope.Action;
 
         if (action == "Update") {
-            person.Id = $scope.personId;
+            person.Id = $scope.person.Id;
             servicePerson.update(person).then(function (response) {
                 getAllPersons();
                 $scope.divPerson = false;
+                $scope.hidePersonId = true;
             }, function () {
                 alert('Error in updating record');
             });
@@ -65,8 +85,13 @@
     }
 
     function myclear() {
-        $scope.personId = "";
-        $scope.personName = "";
+        $scope.person = {
+            Id: 0,
+            Name: "",
+            LastName: "",
+            State: "",
+            Age: 0
+        };
     }
 
 })

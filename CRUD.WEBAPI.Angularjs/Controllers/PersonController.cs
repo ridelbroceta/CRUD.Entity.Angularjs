@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using CRUD.WEBAPI.Angularjs.Models;
 
@@ -46,13 +43,17 @@ namespace CRUD.WEBAPI.Angularjs.Controllers
         }
 
         [HttpPut]
-        public void Put(int id, string name)
+        public void Put([FromBody]Person person)
         {
-            var person = db.Persons.FirstOrDefault(p => p.Id == id);
-            if ((person != null) && !string.IsNullOrEmpty(name))
+            
+            var oldPerson = db.Persons.FirstOrDefault(p => p.Id == person.Id);
+            if ((oldPerson != null) && !string.IsNullOrEmpty(person.Name))
             {
-                person.Name = name;
-                db.Entry(person).State = EntityState.Modified; 
+                oldPerson.Name = person.Name;
+                oldPerson.LastName = person.LastName;
+                oldPerson.State = person.State;
+                oldPerson.Age = person.Age;
+                db.Entry(oldPerson).State = EntityState.Modified; 
                 db.SaveChanges();
             }
 

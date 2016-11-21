@@ -8,13 +8,14 @@
     }
 
     this.update = function (person) {
-       var response = $http({
+       /*var response = $http({
             method: "put",
             url: "api/Person/Put",
-            params: { id: person.Id, name: person.Name }
+            params: {id: person.Id}
         });
 
-        return response;
+        return response;*/
+        return $http.put('api/Person/Put', JSON.stringify(person));
 
     }
 

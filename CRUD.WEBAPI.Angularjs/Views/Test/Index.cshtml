@@ -23,39 +23,73 @@
     <div>
         <p>Persons List</p>
         <table class="table table-bordered table-hover">
-            <tr>
-                <td><b>ID</b></td>
-                <td><b>Name</b></td>
-                <td><b>Actions</b></td>
-            </tr>
-            <tr ng-repeat="person in persons">
-                <td>
-                    {{person.Id}}
-                </td>
-                <td>
-                    {{person.Name}}
-                </td>
-                <td>
-                    <button ng-click="editPerson(person)" class="btn btn-primary">Edit</button>
-                    <button ng-click="deletePerson(person)" class="btn btn-primary">Delete</button>
-                </td>
-            </tr>
+            <thead>
+                <tr class="">
+                    <td><b>ID</b><span ng-click="SortBy('Id')"  class="glyphicon glyphicon-arrow-down"></span></td>
+                    <td><b ng-click="SortBy('Name')">Name</b></td>
+                    <td><b ng-click="SortBy('LastName')">LastName</b></td>
+                    <td><b ng-click="SortBy('State')">State</b></td>
+                    <td><b ng-click="SortBy('Age')">Age</b></td>
+                    <td><b>Actions</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="person in persons | orderBy:Field">
+                    <td>
+                        {{person.Id}}
+                    </td>
+                    <td>
+                        {{person.Name}}
+                    </td>
+                    <td>
+                        {{person.LastName}}
+                    </td>
+                    <td>
+                        {{person.State}}
+                    </td>
+                    <td>
+                        {{person.Age}}
+                    </td>
+                    <td>
+                        <button ng-click="editPerson(person)" class="btn btn-primary">Edit</button>
+                        <button ng-click="deletePerson(person)" class="btn btn-primary">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
     <div ng-show="divPerson">
         <p>{{Action}} Person</p>
         <table>
-            <tr>
+            <tr ng-hide="hidePersonId">
                 <td><b>Id</b></td>
                 <td>
-                    <input type="text" disabled="disabled" ng-model="personId" />
+                    <input type="text" disabled="disabled" ng-model="person.Id" />
                 </td>
             </tr>
             <tr>
                 <td><b>Name</b></td>
                 <td>
-                    <input type="text" ng-model="personName"/>
+                    <input type="text" ng-model="person.Name"/>
+                </td>
+            </tr>
+            <tr>
+                <td><b>LastName</b></td>
+                <td>
+                    <input type="text" ng-model="person.LastName" />
+                </td>
+            </tr>
+            <tr>
+                <td><b>State</b></td>
+                <td>
+                    <input type="text" ng-model="person.State" />
+                </td>
+            </tr>
+            <tr>
+                <td><b>Age</b></td>
+                <td>
+                    <input type="text" ng-model="person.Age" />
                 </td>
             </tr>
             <tr>
