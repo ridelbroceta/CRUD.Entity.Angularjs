@@ -1,0 +1,1 @@
+This example will show how to perform typical CRUD (create, read, update and delete) operations in AngularJS when consuming a WebAPI 2.0

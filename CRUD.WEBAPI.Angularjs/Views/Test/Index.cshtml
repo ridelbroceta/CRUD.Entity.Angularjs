@@ -25,16 +25,31 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <tr class="">
-                    <td><b>ID</b><span ng-click="SortBy('Id')"  class="glyphicon glyphicon-arrow-down"></span></td>
-                    <td><b ng-click="SortBy('Name')">Name</b></td>
-                    <td><b ng-click="SortBy('LastName')">LastName</b></td>
-                    <td><b ng-click="SortBy('State')">State</b></td>
-                    <td><b ng-click="SortBy('Age')">Age</b></td>
+                    <td>
+                        <b>ID</b>
+                        <button ng-click="SortBy('Id', 0)" ng-class="ClassArr[0]"></button>
+                    </td>
+                    <td>
+                        <b>Name</b>
+                        <button ng-click="SortBy('Name', 1)" ng-class="ClassArr[1]"></button>
+                    </td>
+                    <td>
+                        <b>LastName</b>
+                        <button ng-click="SortBy('LastName', 2)" ng-class="ClassArr[2]"></button>
+                    </td>
+                    <td>
+                        <b>State</b>
+                        <button ng-click="SortBy('State', 3)" ng-class="ClassArr[3]"></button>
+                    </td>
+                    <td>
+                        <b>Age</b>
+                        <button ng-click="SortBy('Age', 4)" ng-class="ClassArr[4]"></button>
+                    </td>
                     <td><b>Actions</b></td>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="person in persons | orderBy:Field">
+                <tr ng-repeat="person in persons | orderBy:Field:Reverse">
                     <td>
                         {{person.Id}}
                     </td>

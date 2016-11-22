@@ -9,6 +9,14 @@
         Age: 0
     };
     $scope.Field = "Id";
+    $scope.Reverse = false;
+    var oldColumn = 0;
+    var oldColumnState = 0;
+    const classDown = "glyphicon glyphicon-arrow-down";
+    const classUp = "glyphicon glyphicon-arrow-up";
+    const columnStates = [classDown, classUp];
+    $scope.ClassArr = [classDown, classDown, classDown, classDown, classDown];
+
 
     getAllPersons();
 
@@ -42,7 +50,18 @@
         $scope.hidePersonId = false;
     }
 
-    $scope.SortBy = function (field) {
+    $scope.SortBy = function (field, column) {
+        var newState = 0;
+        if (oldColumn == column) {
+            newState = oldColumnState == 0 ? 1 : 0;
+            $scope.Reverse = !$scope.Reverse;
+        } else {
+            $scope.Reverse = false;
+        }
+        oldColumn = column;
+        oldColumnState = newState;
+        $scope.ClassArr = [classDown, classDown, classDown, classDown, classDown];
+        $scope.ClassArr[column] = columnStates[newState];
         $scope.Field = field;
     }
 
