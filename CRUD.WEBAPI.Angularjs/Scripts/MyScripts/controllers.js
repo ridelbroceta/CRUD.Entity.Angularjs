@@ -1,4 +1,10 @@
-﻿app.controller('controller1', function($scope, servicePerson) {
+﻿app.controller('controller1', function ($scope, servicePerson) {
+    //const
+    const classDown = "glyphicon glyphicon-arrow-down";
+    const classUp = "glyphicon glyphicon-arrow-up";
+    const columns = ['Id', 'Name', 'LastName', 'State', 'Age'];
+    const columnStates = [classDown, classUp];
+
     $scope.divPerson = false;
     $scope.hidePersonId = true;
     $scope.person = {
@@ -8,13 +14,10 @@
         State: "",
         Age: 0
     };
-    $scope.Field = "Id";
+    $scope.Field = columns[0];
     $scope.Reverse = false;
     var oldColumn = 0;
     var oldColumnState = 0;
-    const classDown = "glyphicon glyphicon-arrow-down";
-    const classUp = "glyphicon glyphicon-arrow-up";
-    const columnStates = [classDown, classUp];
     $scope.ClassArr = [classDown, classDown, classDown, classDown, classDown];
 
 
@@ -50,7 +53,7 @@
         $scope.hidePersonId = false;
     }
 
-    $scope.SortBy = function (field, column) {
+    $scope.SortBy = function (column) {
         var newState = 0;
         if (oldColumn == column) {
             newState = oldColumnState == 0 ? 1 : 0;
@@ -62,7 +65,7 @@
         oldColumnState = newState;
         $scope.ClassArr = [classDown, classDown, classDown, classDown, classDown];
         $scope.ClassArr[column] = columnStates[newState];
-        $scope.Field = field;
+        $scope.Field = columns[column];
     }
 
     $scope.addUpdatePerson = function () {
@@ -101,6 +104,7 @@
         myclear();
         $scope.Action = "Add";
         $scope.divPerson = true;
+        $scope.hidePersonId = true;
     }
 
     function myclear() {
