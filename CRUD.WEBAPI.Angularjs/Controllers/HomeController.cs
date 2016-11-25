@@ -14,5 +14,6 @@ namespace CRUD.WEBAPI.Angularjs.Controllers
 
             return View();
         }
+
     }
 }

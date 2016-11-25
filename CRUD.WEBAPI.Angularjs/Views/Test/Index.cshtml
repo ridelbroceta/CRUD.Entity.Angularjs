@@ -6,6 +6,7 @@
 
 <script src="~/Scripts/MyScripts/services.js"></script>
 <script src="~/Scripts/MyScripts/controllers.js"></script>
+<script src="~/Scripts/MyScripts/directive.js"></script>
 
 
 
@@ -75,125 +76,8 @@
     </div>
 
 
-    <form name="myForm" novalidate>
-        <div class="row" ng-show="divPerson">
-            <div class="col-md-6">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <p>{{Action}} Person</p>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row form-group" ng-hide="hidePersonId">
-                            <div class="col-md-2">
-                                <div class="editor-label">
-                                    Id
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="editor-field">
-                                    <input type="text" disabled="disabled" ng-model="person.Id" class="text-box single-line form-control"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-2">
-                                <div class="editor-label">
-                                    Name
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="editor-field">
-                                    <input type="text" name="name" ng-model="person.Name" class="text-box single-line form-control" required ng-minlength="1" ng-maxlength="50" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-10">
-                                <span style="color: red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
-                                    <span ng-show="myForm.name.$error.required">Name is required.</span>
-                                    Invalid
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row  form-group">
-                            <div class="col-md-2">
-                                <div class="editor-label">
-                                    LastName
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="editor-field">
-                                    <input type="text" name="lastname" ng-model="person.LastName" class="text-box single-line form-control" required ng-minlength="1" ng-maxlength="50" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-10">
-                                <span style="color: red" ng-show="myForm.lastname.$dirty && myForm.lastname.$invalid">
-                                    <span ng-show="myForm.lastname.$error.required">LastName is required.</span>
-                                    Invalid
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-2">
-                                <div class="editor-label">
-                                    State
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="editor-field">
-                                    <input type="text" name="state" ng-model="person.State" class="text-box single-line form-control" required ng-minlength="2" ng-maxlength="2" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-10">
-                                <span style="color: red" ng-show="myForm.state.$dirty && myForm.state.$invalid">
-                                    <span ng-show="myForm.state.$error.required">State is required.</span>
-                                    Invalid
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-2">
-                                <div class="editor-label">
-                                    Age
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="editor-field">
-                                    <input type="number" name="age" ng-model="person.Age" class="text-box single-line form-control" required
-                                           min="0" max="200" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-10">
-                                <span style="color: red" ng-show="myForm.age.$dirty && myForm.age.$invalid">
-                                    <span ng-show="myForm.age.$error.required">Age is required.</span>
-                                    Invalid range
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="form-actions no-color">
-                            <button type="button" class="btn btn-primary" ng-click="addUpdatePerson()"
-                                    ng-disabled="(myForm.age.$invalid) || (myForm.state.$invalid) || 
-                                    (myForm.lastname.$invalid) || (myForm.name.$invalid)">
-                                Save Changes
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    <test-dir ng-show="divPerson" action="{{Action}}" hideid="hidePersonId"
+              id="{{person.Id}}" name="person.Name" lastname="person.LastName" state="person.State" age="person.Age" clickaction="addUpdatePerson()"></test-dir>
 
 </div>
 
